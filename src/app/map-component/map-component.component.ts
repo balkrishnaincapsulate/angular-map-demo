@@ -1,61 +1,70 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component,  OnInit, ViewChild } from '@angular/core';
 import {  } from 'googlemaps';
-
+import { MapsAPILoader, AgmMap, LatLngBounds } from '@agm/core';
+import {marker} from '../common/marker-interface';
 @Component({
   selector: 'app-map-component',
   templateUrl: './map-component.component.html',
   styleUrls: ['./map-component.component.scss']
 })
-export class MapComponentComponent implements OnInit {
+export class MapComponentComponent{
 
-  marker : any
-  
+  markers: marker[] = [
+	  {
+		  lat: 40.7711329,
+		  lng: -73.9741874,
+		  label: 'Gold coast',
+		  draggable: true
+	  },
+  ]
 
-  constructor() { }
+  public map: any = { lat: 40.7711329, lng: -73.9741874  };
 
-  @ViewChild('map' , null)mapElement: any;
-  map: google.maps.Map;
-  locations : [
-    ['Bondi Beach', -33.890542, 151.274856, 4],
-    ['Coogee Beach', -33.923036, 151.259052, 5],
-    ['Cronulla Beach', -34.028249, 151.157507, 3],
-    ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-    ['Maroubra Beach', -33.950198, 151.259302, 1]
-  ];
-  infowindow = new google.maps.InfoWindow;
+  //marker : any
 
-  ngOnInit(): void {
-    const mapProperties = {
-         center: new google.maps.LatLng(37.0902, -95.7129),
-         zoom: 5,
-         mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-    // this.map =  new google.maps.Map(document.getElementById('map'), {
-    //   zoom: 10,
-    //   center: new google.maps.LatLng(-33.92, 151.25),
-    //   mapTypeId: google.maps.MapTypeId.ROADMAP,
-    // });
+  // @ViewChild('map' , null)mapElement: any;
+  // map: google.maps.Map;
+  // locations : [
+  //   ['Bondi Beach', -33.890542, 151.274856, 4],
+  //   ['Coogee Beach', -33.923036, 151.259052, 5],
+  //   ['Cronulla Beach', -34.028249, 151.157507, 3],
+  //   ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+  //   ['Maroubra Beach', -33.950198, 151.259302, 1]
+  // ];
+  // infowindow = new google.maps.InfoWindow;
 
-    // this.infowindow = new google.maps.InfoWindow();
+//   ngOnInit(): void {
+//     const mapProperties = {
+//          center: new google.maps.LatLng(37.0902, -95.7129),
+//          zoom: 5,
+//          mapTypeId: google.maps.MapTypeId.ROADMAP
+//     };
+//     this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
+//     // this.map =  new google.maps.Map(document.getElementById('map'), {
+//     //   zoom: 10,
+//     //   center: new google.maps.LatLng(-33.92, 151.25),
+//     //   mapTypeId: google.maps.MapTypeId.ROADMAP,
+//     // });
 
-    // for (let i = 0; i < this.locations.length; i++) { 
-    // this.marker = new google.maps.Marker({
-    //     position: new google.maps.LatLng(this.locations[i][1], this.locations[i][2]),
-    //     map: this.map
-    //   });
+//     // this.infowindow = new google.maps.InfoWindow();
 
-    //   this.marker.setMap(this.map)
+//     // for (let i = 0; i < this.locations.length; i++) { 
+//     // this.marker = new google.maps.Marker({
+//     //     position: new google.maps.LatLng(this.locations[i][1], this.locations[i][2]),
+//     //     map: this.map
+//     //   });
+
+//     //   this.marker.setMap(this.map)
     
-    //   google.maps.event.addListener(this.marker, 'click', (function(marker, i) {
-    //     return function() {
-    //       this.infowindow.setContent(this.locations[i][0]);
-    //       this.infowindow.open(this.map, marker);
-    //     }
-    //   })(this.marker, i));
-    // }
+//     //   google.maps.event.addListener(this.marker, 'click', (function(marker, i) {
+//     //     return function() {
+//     //       this.infowindow.setContent(this.locations[i][0]);
+//     //       this.infowindow.open(this.map, marker);
+//     //     }
+//     //   })(this.marker, i));
+//     // }
 
- }
+//  }
   
 //-------------------------------------------------------------------------------------------------------------------
 

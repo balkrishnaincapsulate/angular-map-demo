@@ -7,5 +7,5 @@ import {  } from 'googlemaps';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'demo-map';
+  title = 'Lamborghini showroom Finder';
 }
