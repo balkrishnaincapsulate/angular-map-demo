@@ -76,7 +76,6 @@ export class SearchMapComponent implements OnInit {
       this.longitude = null;
     }
     else {
-      console.log({name:this.place.name, lat:this.latitude, lan: this.longitude})
     this.markerServcie.updateMarker({name:this.place.name, lat:this.latitude, lan: this.longitude,oldName:this.editVar})
     this.searchControl.reset();
     this.onEdit = "Add";
@@ -93,7 +92,6 @@ export class SearchMapComponent implements OnInit {
   public onEditClick(name){
     this.TableDate.filter((val) => {
       if (val.name === name) {
-        console.log(val.name,"55555")
         this.onEdit = "Update";
         this.editVar = val.name;
         this.searchControl.setValue(val.name);
