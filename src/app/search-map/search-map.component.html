@@ -12,9 +12,9 @@
                 <th>No.</th>
                 <th>Address</th>
             </tr>
-            <tr  *ngFor="let tabledata of TableDate; let i = index" >
-                <td>{{i + 1}}</td>
-                <td>{{tabledata.name}}  <button class="table-btn-delete" (click)="onDeleteClick(tabledata.name)" >Delete</button> <button class="table-btn-edit" (click)="onEditClick(tabledata.name)">Edit </button> </td>
+            <tr *ngFor="let tabledata of TableDate; let i = index" >
+                <td >{{i + 1}}</td>
+                <td class="flex-container" > <div class="th1">{{tabledata.name}}</div> <div class="th2"> <button class="table-btn-delete" (click)="onDeleteClick(tabledata.name)" >Delete</button> <button class="table-btn-edit" (click)="onEditClick(tabledata.name)">Edit </button>  </div>   </td>
             </tr>
 
         </table>

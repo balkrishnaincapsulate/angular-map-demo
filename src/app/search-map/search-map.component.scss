@@ -32,10 +32,12 @@
 table, th, td {
     border: 1px solid black;
   }
+
 th, td {
     padding: 3px;
     text-align: left;
   }
+
 .row{
     padding: 5px;
 }  
@@ -45,4 +47,20 @@ th, td {
     background-color: rgba(63, 238, 238, 0.849);
     color: rgb(112, 12, 12);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.flex-container {
+  display: flex;
+  font-weight: bold;
+  color: deeppink;
+}
+
+.flex-container > .th1 {
+  flex: 0.6;
+}
+
+.flex-container > .th2 {
+  flex: 0.4;
+  margin-right: 20px;
+  padding-right: 30px;
 }
