@@ -2,58 +2,56 @@ import { ElementRef, NgZone, OnInit, ViewChild, Component } from '@angular/core'
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import { MarkerService } from '../services/marker.service'
 
 @Component({
   selector: 'app-search-map',
   templateUrl: './search-map.component.html',
   styleUrls: ['./search-map.component.scss']
 })
+
 export class SearchMapComponent implements OnInit {
   
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
+  public place: google.maps.places.PlaceResult;
+  public TableDate: any;
+  public onEdit = "Add";
+  public editVar :any;
 
   @ViewChild("search" , {static:false})
   public searchElementRef: ElementRef;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
-  ) {}
+    private ngZone: NgZone,
+    private markerServcie:MarkerService,
+  ){}
 
   ngOnInit() {
-    //set google maps defaults
-    this.zoom = 4;
-    this.latitude = 39.8282;
-    this.longitude = -98.5795;
-
-    //create search FormControl
     this.searchControl = new FormControl();
+    
+    this.TableDate =  this.markerServcie.getMarker();
 
-    //set current position
     this.setCurrentPosition();
 
-    //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+           this.place = autocomplete.getPlace();
 
-          //verify result
-          if (place.geometry === undefined || place.geometry === null) {
+          if (this.place.geometry === undefined || this.place.geometry === null) {
             return;
           }
 
-          //set latitude, longitude and zoom
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
-          this.zoom = 12;
+          this.latitude = this.place.geometry.location.lat();
+          this.longitude = this.place.geometry.location.lng();
+          this.zoom = 4;
         });
       });
     });
@@ -67,5 +65,39 @@ export class SearchMapComponent implements OnInit {
         this.zoom = 12;
       });
     }
+  }
+
+  public onButtonClick(){
+    if(this.onEdit === "Add"){
+      this.markerServcie.addMarker({name:this.place.name,  lat:this.latitude, lan: this.longitude})
+      this.searchControl.reset();
+      this.onEdit = "Add";
+      this.latitude = null;
+      this.longitude = null;
+    }
+    else {
+      console.log({name:this.place.name, lat:this.latitude, lan: this.longitude})
+    this.markerServcie.updateMarker({name:this.place.name, lat:this.latitude, lan: this.longitude,oldName:this.editVar})
+    this.searchControl.reset();
+    this.onEdit = "Add";
+    this.editVar = "";
+    this.latitude = null;
+    this.longitude = null;
+    }
+  }
+
+  public onDeleteClick(name){
+    this.markerServcie.removeMarker(name);
+  }
+
+  public onEditClick(name){
+    this.TableDate.filter((val) => {
+      if (val.name === name) {
+        console.log(val.name,"55555")
+        this.onEdit = "Update";
+        this.editVar = val.name;
+        this.searchControl.setValue(val.name);
+      }
+    })
   }
 }

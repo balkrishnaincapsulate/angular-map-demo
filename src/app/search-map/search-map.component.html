@@ -1,8 +1,23 @@
 <div class="container">
-    <div class="form-group">
-      <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+    <div class="row">
+        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+            class="col-md-9" #search [formControl]="searchControl">
+        <button *ngIf="(latitude && longitude)" class="col-md-3 btn" (click)="onButtonClick()">{{onEdit}} Marker</button>
     </div>
-    <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-      <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-    </agm-map>
+
+
+    <div class="row" *ngIf="TableDate.length > 0"> 
+        <table class="table">
+            <tr>
+                <th>No.</th>
+                <th>Address</th>
+            </tr>
+            <tr  *ngFor="let tabledata of TableDate; let i = index" >
+                <td>{{i + 1}}</td>
+                <td>{{tabledata.name}}  <button class="table-btn-delete" (click)="onDeleteClick(tabledata.name)" >Delete</button> <button class="table-btn-edit" (click)="onEditClick(tabledata.name)">Edit </button> </td>
+            </tr>
+
+        </table>
+    </div>
+
 </div>

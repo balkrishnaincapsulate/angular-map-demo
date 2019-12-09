@@ -1,6 +1,5 @@
-export interface marker {
-    lat: number;
-    lng: number;
-    label?: string;
-    draggable: boolean;
-  }
+export interface marker{
+  name?:string;
+  lat:number;
+  lan:number;
+}

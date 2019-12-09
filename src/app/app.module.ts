@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapComponentComponent } from './map-component/map-component.component';
 import { SearchMapComponent } from './search-map/search-map.component';
+import {MarkerService} from './services/marker.service'
 
 @NgModule({
   declarations: [
@@ -17,14 +18,16 @@ import { SearchMapComponent } from './search-map/search-map.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDtFRx5bE3zgystjqBb5YnDc5teloiioeM',
       libraries: ["places"]
     })   
   ],
-  providers: [],
+  providers: [
+    MarkerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

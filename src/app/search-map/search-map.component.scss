@@ -1,0 +1,48 @@
+.btn{
+    height: fit-content;
+    width: max-content;
+    color: red;
+    background: yellow;
+    font-size: 14px;
+    font-style: bold;
+    font-family: cursive;
+}
+
+.table-btn-delete{
+  height: auto;
+  width: auto;
+  color: rgb(231, 247, 12);
+  background: deeppink;
+  font-family: cursive;
+  font-style: bold;
+  position: initial;
+  margin-left:150px ;
+}
+
+.table-btn-edit{
+  height: auto;
+  width: auto;
+  color: rgb(231, 247, 12);
+  background: deeppink;
+  font-family: cursive;
+  font-style: bold;
+  position: absolute;
+}
+
+table, th, td {
+    border: 1px solid black;
+  }
+th, td {
+    padding: 3px;
+    text-align: left;
+  }
+.row{
+    padding: 5px;
+}  
+
+.table{
+    width: 100%;
+    background-color: rgba(63, 238, 238, 0.849);
+    color: rgb(112, 12, 12);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
