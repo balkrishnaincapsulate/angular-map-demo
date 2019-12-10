@@ -22,7 +22,7 @@ export class MapComponentComponent implements OnInit{
 
   
   
-  public map: any = { lat: 39.8282, lng: -98.5795, zoom:4  };
+  public map: any = { lat: 39.8282, lng: -98.5795, zoom:3 };
 
   ngOnInit() {  
     this.markers =  this.markerServcie.getMarker();
