@@ -21,7 +21,7 @@ import {MarkerService} from './services/marker.service'
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDtFRx5bE3zgystjqBb5YnDc5teloiioeM',
+      apiKey: 'AIzaSyBruGXwFqcQOi9MVAImFQrdN9vyJhYffuM',
       libraries: ["places"]
     })   
   ],
