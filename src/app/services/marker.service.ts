@@ -40,4 +40,5 @@ export class MarkerService {
 
 export const markers :marker[] = [
     {name:'Fulton,MO',lat:38.846668,lan:-91.948059},
+    
 ]
